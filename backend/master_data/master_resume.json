@@ -1,0 +1,45 @@
+{
+  "profile": {
+    "name": "Sahasra Kondapalli",
+    "email": "sahasrakondapalli@usf.edu",
+    "title": "Software Engineer",
+    "phone": "8135769606",
+    "location": "Tampa, FL",
+    "links": {}
+  },
+  "summaries": {
+    "Researcher": "I do research and stuff."
+  },
+  "education": [
+    {
+      "id": "ed_8bc2a734",
+      "degree": "Alpha",
+      "uni": "Sigma",
+      "start": "2006",
+      "end": "3006",
+      "major": "GigaChad",
+      "minor": "Luna",
+      "bullets": []
+    }
+  ],
+  "experiences": [
+    {
+      "id": "exp_2bceb33d",
+      "company": "ERA Lab",
+      "role": "Undergrad Researcher",
+      "dates": "Sept 2025 - Present",
+      "location": "USF Tampa",
+      "tags": [
+        "Computer Vision"
+      ],
+      "bullets": [
+        "I wrote paper",
+        "I did research",
+        "I found people"
+      ]
+    }
+  ],
+  "certifications": [],
+  "projects": [],
+  "skills": {}
+}
