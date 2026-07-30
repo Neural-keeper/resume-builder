@@ -1,5 +1,11 @@
+import sys
+from pathlib import Path
 from nicegui import ui, app
-from master_gen import MasterManager
+
+PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
+sys.path.append(str(PROJECT_ROOT))
+
+from backend.src.master_gen import MasterManager
 
 # Initialize your manager instance
 manager = MasterManager()
