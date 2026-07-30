@@ -1,2 +1,4 @@
 # resume-builder
 I hate having to make a new resume for each category of role I apply to. I also lose track of my "master" resume and all the subsets. Sure, I could use Notion or Obsidian, but instead, I've decided to build a fully local modular resume builder tool.
+
+For now, it's a simple tool built in hours. The goal is to turn it into a fancy tool with advice and recommendations, and perhaps even cloud saving. 
