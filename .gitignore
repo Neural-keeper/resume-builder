@@ -216,3 +216,8 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Personal save files
+master_data/
+profiles/
+output_resume.pdf
