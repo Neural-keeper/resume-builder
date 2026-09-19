@@ -1,6 +1,5 @@
 # Resume Builder
 
-<<<<<<< HEAD
 Resume Builder keeps one master resume and helps you create targeted versions for different roles. Instead of rewriting the same experience repeatedly, you maintain reusable entries and choose which ones belong in each version.
 
 ## Tech stack
@@ -65,6 +64,5 @@ npm run dev
 It expects the API at `http://localhost:8000` by default. To use another API, copy `frontend/web/.env.example` to `frontend/web/.env` and set `VITE_API_URL`.
 
 For cloud deployment, authentication and persistent storage configuration are documented in [docs/deployment.md](docs/deployment.md).
-=======
-For a forgetful mind, this is the anchor to bring your thoughts together. 
->>>>>>> 5cf2b2bc48764b22a03aa1d3e091e4e2d0ecf58c
+
+For a forgetful mind, this is the anchor to bring your thoughts together.
