@@ -77,6 +77,28 @@ The included [Dockerfile](../Dockerfile) installs Python dependencies and the Ty
 
 Free container plans may sleep when idle, so the first request after inactivity can take longer than later requests.
 
+## Deploy through GitHub Actions
+
+You do not need Docker, Python, or npm installed locally. The workflow at [`.github/workflows/backend.yml`](../.github/workflows/backend.yml) runs on GitHub-hosted Ubuntu runners and will:
+
+1. Install Python dependencies.
+2. Compile the backend Python modules.
+3. Build the Docker image from the repository's `Dockerfile`.
+4. Trigger a Render deployment after validation succeeds, when a deploy hook is configured.
+
+Configure the workflow once:
+
+1. In Render, create a **Docker Web Service** connected to this GitHub repository.
+2. Set the service environment variables and health check from the sections above.
+3. In Render, open the service settings and create a **Deploy Hook**.
+4. In GitHub, open **Settings > Secrets and variables > Actions > New repository secret**.
+5. Name the secret `RENDER_DEPLOY_HOOK_URL` and paste the Render deploy hook URL as its value.
+6. Push a change to `main`, or run **Actions > Backend CI and deploy > Run workflow**.
+
+Pull requests run validation and build the image but never deploy. Pushes to `main` deploy only after validation passes. If the Render secret is absent, the workflow still validates the backend and reports that deployment was skipped.
+
+The Render service still builds and runs the image itself. GitHub Actions is the gate and deployment trigger; it does not need to publish the image to a registry for this setup.
+
 ## API requests
 
 Production clients should send the Supabase access token on every protected request:
