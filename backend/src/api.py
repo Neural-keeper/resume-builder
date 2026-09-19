@@ -8,6 +8,7 @@ from typing import Any, Dict, List
 
 import httpx
 from fastapi import BackgroundTasks, Depends, FastAPI, HTTPException, status
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from pydantic import BaseModel, Field
@@ -22,6 +23,18 @@ LOCAL_DATA_DIR.mkdir(parents=True, exist_ok=True)
 
 app = FastAPI(title="Resume Builder API", version="1.0.0")
 bearer = HTTPBearer(auto_error=False)
+allowed_origins = [
+    origin.strip()
+    for origin in os.getenv("FRONTEND_ORIGINS", "http://localhost:5173").split(",")
+    if origin.strip()
+]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=allowed_origins,
+    allow_credentials=True,
+    allow_methods=["GET", "PUT", "POST", "OPTIONS"],
+    allow_headers=["Authorization", "Content-Type"],
+)
 
 
 class MasterDocument(BaseModel):

@@ -51,4 +51,16 @@ curl http://localhost:8000/api/v1/me/master `
 	-H "Authorization: Bearer local-development-token"
 ```
 
+## Use the web frontend
+
+The deployable React client is in `frontend/web`. Run it locally with Node.js:
+
+```powershell
+cd frontend/web
+npm install
+npm run dev
+```
+
+It expects the API at `http://localhost:8000` by default. To use another API, copy `frontend/web/.env.example` to `frontend/web/.env` and set `VITE_API_URL`.
+
 For cloud deployment, authentication and persistent storage configuration are documented in [docs/deployment.md](docs/deployment.md).
