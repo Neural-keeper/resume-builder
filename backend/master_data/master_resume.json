@@ -3,39 +3,59 @@
     "name": "Sahasra Kondapalli",
     "email": "sahasrakondapalli@usf.edu",
     "title": "Software Engineer",
-    "phone": "8135769606",
+    "phone": "(813) 576 - 9606",
     "location": "Tampa, FL",
     "links": {}
   },
   "summaries": {
-    "Researcher": "I do research and stuff."
+    "Researcher": "Computer Science student at the University of South Florida with research experience in machine learning, vision-language models, and brain-computer interfaces. First author of a peer-reviewed IEEE publication on multimodal reasoning, presidential tuition scholarship recipient, and president of a 290-member engineering organization. Experienced building end-to-end AI systems with a focus on on-device inference, privacy-preserving architectures, and evaluation methodology.",
+    "Software Engineer": "Computer Science student at the University of South Florida with hands-on experience in full-stack systems engineering, machine learning, and AI model deployment. First author of a peer-reviewed IEEE publication, president of a 290-member engineering organization, and Presidential tuition waiver recipient. Proficient across Python, C/C++, JavaScript, and cloud tooling, with a track record of building end-to-end technical systems in research and product contexts."
   },
   "education": [
     {
-      "id": "ed_86034858",
-      "degree": "Alpha",
-      "uni": "Sigma",
-      "start": "2006",
-      "end": "3006",
-      "major": "GigaChad",
-      "minor": "Luna",
+      "id": "ed_53088401",
+      "degree": "Bachelor of Science",
+      "uni": "University of South Florida",
+      "start": "2024",
+      "end": "2028",
+      "major": "Computer Science",
+      "minor": "Astronomy",
       "bullets": []
     }
   ],
   "experiences": [
     {
-      "id": "exp_2bceb33d",
-      "company": "ERA Lab",
-      "role": "Undergrad Researcher",
+      "id": "exp_6da6137d",
+      "company": "Embodied Robotics and Automation Lab",
+      "role": "Undergraduate Researcher",
       "dates": "Sept 2025 - Present",
-      "location": "USF Tampa",
+      "location": "Tampa, Fl",
       "tags": [
-        "Computer Vision"
+        "Computer Vision",
+        "Research",
+        "Vision Language Models"
       ],
       "bullets": [
-        "I wrote paper",
-        "I did research",
-        "I found people"
+        "Authored first-author peer-reviewed paper (LADBench) on logical image fault detection, accepted at IEEE ICDL 2026",
+        "Designed and benchmarked state of the art Vison Language Models against Tiered Prompting Protocol for evaluation of logical capabilities",
+        "Spearheaded edge fall detection, implemented YOLO model on chip",
+        "Developed custom Model Context Protocol (MCP) tools enabling an LLM agent to securely query local databases, execute system commands, and track user schedules"
+      ]
+    },
+    {
+      "id": "exp_48d85639",
+      "company": "Association for Computing Machinery Student Chapter",
+      "role": "Treasurer",
+      "dates": "April 2025 - May 2026",
+      "location": "Tampa, Fl",
+      "tags": [
+        "Finance",
+        "Budget-management",
+        "Funraising"
+      ],
+      "bullets": [
+        "Managed $10,000 in funding, allocated accross four foundational teams",
+        "Raised $6,000 through direct sponsorship negiotiations for flagship AI Convention"
       ]
     }
   ],

@@ -28,63 +28,91 @@ def escape_typst_string(text: str) -> str:
     return text
 
 
+# ---------------------------------------------------------------------------
+# Inline template — Jake-style: New Computer Modern, smallcaps section
+# headings with full-width rule, 3fr/1fr grid entries, indented bullets.
+# Defined once here so no external .typ file or path resolution is needed.
+# ---------------------------------------------------------------------------
+_TEMPLATE = r"""
+#set list(indent: 1em)
+#show list: set text(size: 0.92em)
+#set page(paper: "us-letter", margin: (x: 0.5in, y: 0.5in))
+#set text(size: 11pt, font: "New Computer Modern")
+
+#let _resume_heading(txt) = {
+  show heading: set text(size: 0.92em, weight: "regular")
+  block[
+    = #smallcaps(txt)
+    #v(-4pt)
+    #line(length: 100%, stroke: 1pt + black)
+  ]
+}
+
+#let _exp_entry(role, company, dates, location: "", ..points) = {
+  set block(above: 0.7em, below: 1em)
+  pad(left: 1em, right: 0.5em, box[
+    #grid(
+      columns: (3fr, 1fr),
+      align(left)[
+        *#role* \
+        _#company _
+      ],
+      align(right)[
+        #dates \
+        _#location _
+      ],
+    )
+    #list(..points)
+  ])
+}
+"""
+
+
 def build_typst_markup(
     profile: Dict[str, Any],
     experiences: List[Dict[str, Any]],
     target_title: str = ""
 ) -> str:
     """Dynamically formats Python dictionary state into valid Typst markup."""
-    name = escape_typst_string(profile.get("name", "Your Name"))
-    email = escape_typst_string(profile.get("email", ""))
-    phone = escape_typst_string(profile.get("phone", ""))
+    name     = escape_typst_string(profile.get("name", "Your Name"))
+    email    = escape_typst_string(profile.get("email", ""))
+    phone    = escape_typst_string(profile.get("phone", ""))
     location = escape_typst_string(profile.get("location", ""))
-    title = escape_typst_string(target_title or profile.get("title", ""))
+    title    = escape_typst_string(target_title or profile.get("title", ""))
 
-    markup = f"""
-#set page(
-  paper: "us-letter",
-  margin: (x: 1.5cm, y: 1.5cm)
-)
-#set text(font: "Liberation Sans", size: 10pt)
+    markup = _TEMPLATE
 
-// Header Section
-#align(center)[
-  #text(size: 18pt, weight: "bold")[{name}] \\
-  #v(-4pt)
-  #text(size: 11pt, style: "italic", fill: rgb("#D16D3B"))[{title}] \\
-  #v(2pt)
-  #text(size: 9pt)[{email} | {phone} | {location}]
-]
-
-#v(8pt)
-#line(length: 100%, stroke: 0.5pt + luma(150))
-
-// Work Experience Section
-#v(6pt)
-#text(size: 12pt, weight: "bold")[WORK EXPERIENCE]
-#v(4pt)
+    # ── Header ────────────────────────────────────────────────────────────────
+    # Title line is omitted when blank so the header stays clean.
+    title_line = f'  #text(size: 0.95em, style: "italic")[{title}] \\\n' if title else ""
+    markup += f"""
+#align(center, block[
+  #text(size: 2.25em)[*{name}*] \\
+{title_line}  #v(2pt)
+  #text(size: 0.88em)[{phone} | {email} | {location}]
+])
+#v(5pt)
 """
+
+    # ── Work Experience ────────────────────────────────────────────────────────
+    markup += '\n#_resume_heading("Work Experience")\n'
 
     for exp in experiences:
         company = escape_typst_string(exp.get("company", ""))
-        role = escape_typst_string(exp.get("role", ""))
-        dates = escape_typst_string(exp.get("dates", ""))
+        role    = escape_typst_string(exp.get("role", ""))
+        dates   = escape_typst_string(exp.get("dates", ""))
         exp_loc = escape_typst_string(exp.get("location", ""))
 
+        bullet_args = "\n".join(
+            f'  [{escape_typst_string(b)}],' for b in exp.get("bullets", [])
+        )
         markup += f"""
-#grid(
-  columns: (1fr, auto),
-  align: (left, right),
-  [* {role} * -- _{company}_], [{dates}],
-  [#text(size: 8.5pt, fill: luma(100))[{exp_loc}]], []
+#_exp_entry(
+  "{role}", "{company}", "{dates}",
+  location: "{exp_loc}",
+{bullet_args}
 )
-#v(-2pt)
 """
-        bullets = exp.get("bullets", [])
-        for bullet in bullets:
-            clean_b = escape_typst_string(bullet)
-            markup += f"- {clean_b}\n"
-        markup += "#v(4pt)\n"
 
     return markup
 
